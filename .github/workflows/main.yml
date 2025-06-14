@@ -41,6 +41,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pw-   # fall back to *any* Playwright version for the OS
 
+      - name: Debug Information
+        run: |
+            echo "Event name: ${{ github.event_name }}"
+            echo "Workflow: ${{ github.workflow }}"
+            echo "Action: ${{ github.action }}"
+            echo "Actor: ${{ github.actor }}"
+            echo "Repository: ${{ github.repository }}"
+            echo "Ref: ${{ github.ref }}"
+            echo "Head ref: ${{ github.head_ref }}"
+            echo "Base ref: ${{ github.base_ref }}"
+            echo "Event payload:"
+            cat $GITHUB_EVENT_PATH
+
       - name: Setup application
         run: bun install
       - name: Install Chromium for Playwright
